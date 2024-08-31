@@ -1,5 +1,22 @@
-amount_homework=12
-all_ime=1.5
-cours='Python'
-time_to_one_work=all_ime/amount_homework
-print('Курс:', cours, 'всего задач:', amount_homework, 'затрачено часов:',all_ime, 'среднее время выполнения:',time_to_one_work)
+calls = 0
+
+def count_calls ():
+    global calls 
+    calls += 1
+
+
+def string_info (string):
+    count_calls()
+    return (len(string), string.upper(), string.lower())
+
+
+def is_contains (string, list_of_search):
+    count_calls()
+    return string.upper() in [s.upper() for s in list_of_search]
+
+
+print(string_info('Capybara'))
+print(string_info('Armageddon'))
+print(is_contains('Urban', ['ban', 'BaNaN', 'urBAN'])) # Urban ~ urBAN
+print(is_contains('cycle', ['recycling', 'cyclic'])) # No matches
+print(calls)
