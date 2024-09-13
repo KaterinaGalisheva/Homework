@@ -13,7 +13,7 @@ class House :
     def __len__(self):
         return self.number_of_floors
     def __str__(self):
-        return (f'Название: ', {self.name}, 'количество этажей: ', {self.number_of_floors})
+        return f'Название: ', {self.name}, 'количество этажей: ', {self.number_of_floors}
     def go_to (self, new_floor):
         if self.number_of_floors >= new_floor > 0:
             for i in range (1, new_floor + 1):
