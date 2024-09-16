@@ -1,9 +1,9 @@
 class Animal:
+    alive = True
+    fed = False
 
-    def __init__(self, name, alive:bool, fed:bool ):
+    def __init__(self, name):
         self.name = name
-        self.alive = True
-        self.fed = False
 
     def eat (self, food):
         self.food = Plant
@@ -15,10 +15,9 @@ class Animal:
             self.fed = False
 
 class Plant:
-
-    def __init__(self, name, edible:bool ):
+    edible = False
+    def __init__(self, name):
         self.name = name
-        self.edible = False
 
 class Mammal (Animal):
     pass
@@ -34,17 +33,10 @@ class Fruit (Plant):
     edible = True
 
 
-
-
-
-
-
-
-
-a1 = Predator('Волк с Уолл-Стрит', True, False)
-a2 = Mammal('Хатико', True, False)
-p1 = Flower('Цветик семицветик', False)
-p2 = Fruit('Заводной апельсин', True)
+a1 = Predator('Волк с Уолл-Стрит')
+a2 = Mammal('Хатико')
+p1 = Flower('Цветик семицветик')
+p2 = Fruit('Заводной апельсин')
 
 print(a1.name)
 print(p1.name)
