@@ -87,7 +87,15 @@ class UrTube:
             else:
                 print('Такого видео не существует')
 
-    def watch_video (self, title:str):
+        def watch_video (self, title:str):
+
+        if Video.self.adult_mode is True:
+            if self.current_user.age < 18:
+                print("Вам нет 18 лет, пожалуйста покиньте страницу")
+                return
+            else:
+             print('Войдите в аккаунт, чтобы смотреть видео')
+
         Video.time_now = 0
         for i in Video.video_list:
             if title == i:
@@ -98,9 +106,3 @@ class UrTube:
                     print('Конец видео')
                 else:
                     continue
-        if self.current_user.age < 18:
-            print("Вам нет 18 лет, пожалуйста покиньте страницу")
-            return
-        else:
-            print('Войдите в аккаунт, чтобы смотреть видео')
-
