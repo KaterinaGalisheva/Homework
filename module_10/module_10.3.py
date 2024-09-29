@@ -49,10 +49,10 @@ class Bank ():
             print(f'Запрос на {some_number}')
             if some_number <= self.balance:
                 self.balance -= some_number
-            print(f'Снятие: {some_number}. Баланс: {self.balance}')
-        else:
-            print('Запрос отклонён, недостаточно средств')
-            self.lock.acquire()
+                print(f'Снятие: {some_number}. Баланс: {self.balance}')
+            else:
+                print('Запрос отклонён, недостаточно средств')
+                self.lock.acquire()
 
       
 if __name__ == '__main__':
