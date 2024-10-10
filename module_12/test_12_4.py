@@ -27,7 +27,7 @@ class RunnerTest(unittest.TestCase):
             logging.info('"Test_run" выполнен успешно')
         except:
             logging.warning('Неверный тип данных для объекта Runner') 
-            logging.warning(traceback.format_exc())
+            
 
     def test_walk(self):
         try:
@@ -38,7 +38,7 @@ class RunnerTest(unittest.TestCase):
             logging.info('"test_walk" выполнен успешно')
         except:
             logging.warning('Неверная скорость для Runner')
-            logging.warning(traceback.format_exc())
+            
 
 
 
