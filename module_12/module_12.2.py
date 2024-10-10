@@ -76,9 +76,6 @@ class Tournament:
 import classes_R_T as crt # импорт класса из другого файла
 import unittest
 
-
-
-
 # как верно обращаться к элементу словаря:
 #my_dict = {'a': 11, 'b': 22, 'c': 33}
 
@@ -117,31 +114,42 @@ class TournamentTest(unittest.TestCase):
         tournament_1 = crt.Tournament(90, self.r_1, self.r_3)
         result_1 = tournament_1.start()
         TournamentTest.all_results[0] = result_1
-        self.assertTrue(result_1[2] == self.r_3.name)
+        self.assertTrue(result_1[list(result_1.keys())[1]] == self.r_3.name)
 
     def test_tournament_1(self):
         tournament_2 = crt.Tournament(90, self.r_2, self.r_3)
         result_2 = tournament_2.start()
         TournamentTest.all_results[1] = result_2
-        self.assertTrue(result_2[2] == self.r_3.name)
+        self.assertTrue(result_2[list(result_2.keys())[1]] == self.r_3.name)
         
     def test_tournament_2(self):
         tournament_3 = crt.Tournament(90, self.r_1, self.r_2, self.r_3)
         result_3 = tournament_3.start()
         TournamentTest.all_results[2] = result_3
-        self.assertTrue(result_3[3] == self.r_3.name)
+        self.assertTrue(result_3[list(result_3.keys())[2]] == self.r_3.name)
 
+# ВЫЯВИЛАСЬ ОШИБКА НА МАЛОЙ ДИСТАНЦИИ
+    def test_tournament_atention_3(self): # Ник пришел не последним 
+        tournament_4 = crt.Tournament(5, self.r_1, self.r_2, self.r_3)
+        result_4 = tournament_4.start()
+        TournamentTest.all_results[3] = result_4
+        self.assertTrue(result_4[list(result_4.keys())[2]] == self.r_3.name)
 
 # ошибка в том, что удаление объекта из списка participants может 
 # происходить до того, как будет обработан весь цикл и для каждого объекта 
 # будет запущен метод participant.run()
 # я бы использовала for вместо while
 
-    def test_tournament_atention_3(self):
-        tournament_4 = crt.Tournament(5, self.r_1, self.r_2, self.r_3)
-        result_4 = tournament_4.start()
-        TournamentTest.all_results[3] = result_4
-        self.assertTrue(result_4[2] == self.r_3.name)
+'''def start(self):
+        finishers = {}
+        place = 1
+        for participant in self.participants:
+            participant.run()
+            if participant.distance >= self.full_distance:
+                finishers[place] = participant
+                place += 1
+        print(finishers)
+        return finishers'''
 
 
    
