@@ -11,6 +11,7 @@ logging.basicConfig(level=logging.INFO,
                     encoding='utf-8', 
                     filename='runner_tests.log', 
                     format='%(asctime)s | %(levelname)s | %(messege)s')
+logging.warning('This should go in the file.')
 
 
 
