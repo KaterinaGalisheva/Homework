@@ -10,8 +10,7 @@ logging.basicConfig(level=logging.INFO,
                     filemode='w', 
                     encoding='utf-8', 
                     filename='runner_tests.log', 
-                    format='%(asctime)s | %(levelname)s | %(messege)s')
-logging.warning('This should go in the file.')
+                    format='%(asctime)s | %(levelname)s | %(message)s')
 
 
 
