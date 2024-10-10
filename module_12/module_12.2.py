@@ -79,6 +79,18 @@ import unittest
 
 
 
+# как верно обращаться к элементу словаря:
+#my_dict = {'a': 11, 'b': 22, 'c': 33}
+
+#>>> my_dict[list(my_dict.keys())[0]]
+#11
+#>>> my_dict[list(my_dict.keys())[2]]
+#33
+#>>> my_dict[list(my_dict.keys())[1]]
+#22
+
+
+
 class TournamentTest(unittest.TestCase):
 
     # выполняет действия один раз в самом начале
@@ -123,6 +135,7 @@ class TournamentTest(unittest.TestCase):
 # ошибка в том, что удаление объекта из списка participants может 
 # происходить до того, как будет обработан весь цикл и для каждого объекта 
 # будет запущен метод participant.run()
+# я бы использовала for вместо while
 
     def test_tournament_atention_3(self):
         tournament_4 = crt.Tournament(5, self.r_1, self.r_2, self.r_3)
