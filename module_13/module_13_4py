@@ -37,7 +37,7 @@ from aiogram.dispatcher import FSMContext
 
 
 
-api = '7339757263:AAGp5lowmgsecL8MYV2RooQtbLlSd5G545Q'
+api = '7545Q'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
