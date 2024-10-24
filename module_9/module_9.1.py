@@ -13,21 +13,16 @@
 #Запустите функцию apply_all_func, передав в неё список из чисел и набор других функций.
 
 
-def apply_all_func (int_list:int|float, *functions):
-    function_list = []
-    result_list = []
-    result_dict = zip(function_list, result_list)
+def apply_all_func (int_list, *functions):
+    results = {}
     for func in functions:
-        function_list.append(func.__name__)
-        result = func(int_list)
-        result_list.append(result)
-    return dict(result_dict)
+        results[func.__name__] = func(int_list)
+    return results
 
 
 
 if __name__ == '__main__':
     print(apply_all_func([6, 20, 15, 9], max, min))
     print(apply_all_func([6, 20, 15, 9], len, sum, sorted))
-
 
 
