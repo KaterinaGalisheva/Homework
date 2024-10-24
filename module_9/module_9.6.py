@@ -6,22 +6,16 @@
 Опишите логику работы внутри функции all_variants.
 Вызовите функцию all_variants и выполните итерации.'''
 
-import itertools
-
-
-
-
 def all_variants(text):
-    i = 0
-    for item in itertools.combinations(text,len(text)-2):
-        yield item
-        i +=1
-    for item in itertools.combinations(text,len(text)-1):
-        yield item
-        i +=1
-    for item in itertools.combinations(text,len(text)):
-        yield item
-        i +=1
+    n = len(text)
+    # Итерируемся по всем возможным начальным индексам
+    for start in range(n):
+        # Итерируемся по всем возможным конечным индексам
+        for end in range(start + 1, n + 1):
+            # Возвращаем срез строки от start до end
+            yield text[start:end]
 
-for i in all_variants("abc"):
-    print(*i)
+# Пример использования функции
+a = all_variants("abc")
+for i in a:
+    print(i)
