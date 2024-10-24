@@ -22,22 +22,29 @@
 def personal_sum(*numbers):
     result = 0
     incorrect_data = 0
-    total_result_list = (result, incorrect_data)
     for i in numbers:
-        for j in i:
-            try:
-                result += j
-            except TypeError:
-                incorrect_data += 1
-                print(f'Некорректный тип данных для подсчёта суммы: {j}')
-    return total_result_list
+        try:
+            result += i
+        except TypeError:
+            incorrect_data += 1
+            print(f'Некорректный тип данных для подсчёта суммы: {i}')
+    
+    return (result, incorrect_data)
+
 
 
 def calculate_average(numbers):
     try:
-        sum_data = personal_sum(numbers)
-        len_data = len(numbers)
-        average = sum(sum_data) / len_data
+        if not isinstance(numbers, (list, tuple)):
+            raise TypeError
+        
+        sum_data, incorrect_data = personal_sum(numbers)
+        count_data = len(numbers) - incorrect_data
+        
+        if count_data == 0:
+            return 0
+            
+        average = sum_data / count_data
         return average
     except ZeroDivisionError:
         return 0
@@ -50,6 +57,10 @@ print(f'Результат 1: {calculate_average("1, 2, 3")}') # Строка п
 print(f'Результат 2: {calculate_average([1, "Строка", 3, "Ещё Строка"])}') # Учитываются только 1 и 3
 print(f'Результат 3: {calculate_average(567)}') # Передана не коллекция
 print(f'Результат 4: {calculate_average([42, 15, 36, 13])}') # Всё должно работать
+
+
+
+
 
 
 
