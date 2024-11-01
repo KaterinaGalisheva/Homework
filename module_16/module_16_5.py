@@ -71,7 +71,7 @@ async def delete_user(
 # пишем в терминале:
 # python3 -m uvicorn main:app и энтер
 # uvicorn your_filename:app --reload
-# uvicorn module_16.module_16_5.module_16_5:app --reload
+# uvicorn module_16_API.module_16_5:app --reload
 
 # Как перейти на страницу с документацией этой страницы?
 # в адресной строке добавить
