@@ -14,11 +14,11 @@ from sqlalchemy import update
 
 
 
-router = APIRouter(prefix='/task', tags=['task'])
+router = APIRouter(prefix='/user', tags=['user'])
 
 
 @router.get('/')
-async def all_tasks(db: Annotated[Session, Depends(get_db)]):
+async def all_users(db: Annotated[Session, Depends(get_db)]):
     products = db.scalars(select(Product).where(Product.is_active == True, Product.stock > 0)).all()
     if products is None:
         return HTTPException(
@@ -28,8 +28,8 @@ async def all_tasks(db: Annotated[Session, Depends(get_db)]):
     return products
 
 
-@router.get('/task_id')
-async def task_by_id(db: Annotated[Session, Depends(get_db)]):
+@router.get('/user_id')
+async def user_by_id(db: Annotated[Session, Depends(get_db)]):
     products = db.scalars(select(Product).where(Product.is_active == True, Product.stock > 0)).all()
     if products is None:
         return HTTPException(
@@ -37,9 +37,10 @@ async def task_by_id(db: Annotated[Session, Depends(get_db)]):
             detail='There are no product'
         )
     return products
+
 
 @router.post('/create')
-async def create_task(db: Annotated[Session, Depends(get_db)], create_product: CreateProduct):
+async def create_user(db: Annotated[Session, Depends(get_db)], create_product: CreateProduct):
     db.execute(insert(Product).values(name=create_product.name,
                                       description=create_product.description,
                                       price=create_product.price,
@@ -55,8 +56,9 @@ async def create_task(db: Annotated[Session, Depends(get_db)], create_product: C
     }
 
 
+
 @router.put('/update')
-async def update_task(db: Annotated[Session, Depends(get_db)], product_slug: str,
+async def update_user(db: Annotated[Session, Depends(get_db)], product_slug: str,
                          update_product_model: CreateProduct):
     product_update = db.scalar(select(Product).where(Product.slug == product_slug))
     if product_update is None:
@@ -79,9 +81,8 @@ async def update_task(db: Annotated[Session, Depends(get_db)], product_slug: str
         'transaction': 'Product update is successful'
     }
 
-
 @router.delete('/delete')
-async def delete_tasks(db: Annotated[Session, Depends(get_db)], product_id: int):
+async def delete_user(db: Annotated[Session, Depends(get_db)], product_id: int):
     product_delete = db.scalar(select(Product).where(Product.id == product_id))
     if product_delete is None:
         raise HTTPException(
