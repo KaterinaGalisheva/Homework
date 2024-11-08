@@ -52,7 +52,7 @@ def create_user(username: Annotated[str, Path(min_length=5, max_length=15, descr
     if not users_db:
         user_id = 1
     else:
-        user_id = len(users_db)+1
+        user_id = max(user.user_id for user in users_db) + 1
 
     new_user = User(user_id=user_id, username=username, age=age)
     users_db.append(new_user)
@@ -74,12 +74,11 @@ def update_user(user_id: Annotated[int, Path(ge=1, le=100, description='Enter id
 
 @app.delete('/user/{user_id}')
 def delete_user(user_id: Annotated[int, Path(ge=1, le=100, description='Enter id', example='15')]) -> str:
-    try:
-        users_db.pop(user_id)
-        return f'user with {user_id} was deleted'
-    except IndexError:
-        raise HTTPException(status_code=404, detail='User not found')
-
+    for user in users_db:
+        if user["id"] == user_id:
+            users_db.remove(user)
+            return f'User  with id {user_id} was deleted'
+    raise HTTPException(status_code=404, detail='User not found')
 
 
 
