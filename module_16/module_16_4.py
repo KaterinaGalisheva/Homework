@@ -75,7 +75,7 @@ def update_user(user_id: Annotated[int, Path(ge=1, le=100, description='Enter id
 @app.delete('/user/{user_id}')
 def delete_user(user_id: Annotated[int, Path(ge=1, le=100, description='Enter id', example='15')]) -> str:
     for user in users_db:
-        if user["id"] == user_id:
+        if user.user_id == user_id:
             users_db.remove(user)
             return f'User  with id {user_id} was deleted'
     raise HTTPException(status_code=404, detail='User not found')
